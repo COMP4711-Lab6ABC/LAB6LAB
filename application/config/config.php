@@ -5,8 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['menu_choices'] = array(
     'menudata' => array(
         array('name' => 'Home', 'link' => '/'),
-        array('name' => 'Work', 'link' => '/#'),
         array('name' => 'Maintenance', 'link' => '/mtce'),
+        array('name' => 'Work', 'link' => '/views'),
         array('name' => 'Help Wanted', 'link' => '/#'),
         )
     );
