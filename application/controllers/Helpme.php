@@ -1,5 +1,5 @@
 <?php
-lass Helpme extends Application
+class Helpme extends Application
 {
 
 

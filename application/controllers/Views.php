@@ -11,7 +11,7 @@ class Views extends Application
         $this->data['rightside'] = 'by_category';
 
         $this->data['leftside'] = $this->makePrioritizedPanel($tasks);
-        //$this->data['rightside'] = $this->makeCategorizedPanel($tasks);
+        $this->data['rightside'] = $this->makeCategorizedPanel($tasks);
         $this->render('template_secondary'); 
     }
     
