@@ -8,7 +8,7 @@ class Tasks extends CSV_Model
         }
 
     function getCategorizedTasks()
-{
+    {
     // extract the undone tasks
     foreach ($this->all() as $task)
     {
@@ -27,17 +27,19 @@ class Tasks extends CSV_Model
     foreach ($undone as $task)
         $converted[] = (array) $task;
 
-return $converted;
-}
+        return $converted;
+    }
     
+    
+}
+
     function orderByCategory($a, $b)
-{
+    {
     if ($a->group < $b->group)
         return -1;
     elseif ($a->group > $b->group)
         return 1;
     else
         return 0;
-}
-}
+    }
 ?>
