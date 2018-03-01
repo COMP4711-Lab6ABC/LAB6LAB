@@ -24,6 +24,8 @@ class Mtce extends Application {
         $this->data['display_tasks'] = $result;
 
         // and then pass them on
+		$role = $this->session->userdata('userrole');
+		$this->data['pagetitle'] = 'TODO List Maintenance ('. $role . ')';
         $this->data['pagebody'] = 'itemlist';
         $this->render();
     }
