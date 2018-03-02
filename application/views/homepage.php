@@ -10,6 +10,7 @@
 		<th>Status</th>
     </tr>
     
+	
     {display_tasks}
     <tr>
     <td>{id}</td>
