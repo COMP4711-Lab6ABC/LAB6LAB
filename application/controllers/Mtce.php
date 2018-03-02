@@ -1,14 +1,11 @@
 <?php
-
 class Mtce extends Application {
-
     private $items_per_page = 10;
     
     public function index()
     {
         $this->page(1);
     }   
-
     // Show a single page of todo items
     private function show_page($tasks)
     {
@@ -23,7 +20,6 @@ class Mtce extends Application {
             $result .= $this->parser->parse('oneitem', (array) $task, true);
         }
         $this->data['display_tasks'] = $result;
-
         // and then pass them on
 		$role = $this->session->userdata('userrole');
         
@@ -42,7 +38,6 @@ class Mtce extends Application {
     {
         $records = $this->tasks->all(); // get all the tasks
         $tasks = array(); // start with an empty extract
-
         // use a foreach loop, because the record indices may not be sequential
         $index = 0; // where are we in the tasks list
         $count = 0; // how many items have we added to the extract
@@ -62,7 +57,6 @@ class Mtce extends Application {
             $this->data['pagination'] .= $this->parser->parse('itemadd',[], true);
         $this->show_page($tasks);
     }
-
     // Build the pagination navbar
     private function pagenav($num) {
         $lastpage = ceil($this->tasks->size() / $this->items_per_page);
@@ -99,18 +93,18 @@ class Mtce extends Application {
         $this->load->helper('form');
         $task = $this->session->userdata('task');
         $this->data['id'] = $task->id;
-
         // if no errors, pass an empty message
         if ( ! isset($this->data['error']))
             $this->data['error'] = '';
-
         $fields = array(
             'ftask'      => form_label('Task description') . form_input('task', $task->task),
             'fpriority'  => form_label('Priority') . form_dropdown('priority', $this->app->priority(), $task->priority),
+			'fsize'		 => form_label('Size') . form_input('size', $task->size),
+			'fgroup'		 => form_label('Group') . form_input('group', $task->group),
+			'fgroup'		 => form_label('Status') . form_input('status', $task->status),
             'zsubmit'    => form_submit('submit', 'Update the TODO task'),
         );
         $this->data = array_merge($this->data, $fields);
-
         $this->data['pagebody'] = 'itemedit';
         $this->render();
     }
@@ -121,13 +115,11 @@ class Mtce extends Application {
         // setup for validation
         $this->load->library('form_validation');
         $this->form_validation->set_rules($this->tasks->rules());
-
         // retrieve & update data transfer buffer
         $task = (array) $this->session->userdata('task');
         $task = array_merge($task, $this->input->post());
         $task = (object) $task;  // convert back to object
         $this->session->set_userdata('task', (object) $task);
-
         // validate away
         if ($this->form_validation->run())
         {

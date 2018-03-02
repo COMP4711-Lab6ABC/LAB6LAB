@@ -5,6 +5,9 @@
         <th>Id</th>
         <th>Task</th>
         <th>Priority</th>
+		<th>Size</th>
+		<th>Group</th>
+		<th>Status</th>
     </tr>
     
     {display_tasks}
@@ -12,6 +15,9 @@
     <td>{id}</td>
     <td>{task}</td>
     <td>{priority}</td>
+		<td>{size}</td>
+	<td>{group}</td>
+	<td>{status}</td>
     </tr>
     {/display_tasks}
 </table>
