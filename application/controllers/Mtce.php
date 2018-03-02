@@ -15,22 +15,22 @@ class Mtce extends Application {
         $this->data['pagetitle'] = 'TODO List Maintenance';
         // build the task presentation output
         
-        $result = ''; // start with an empty array      
+        $result = ''; // start with an empty array
+        
+        // and then pass them on
+		$role = $this->session->userdata('userrole');
+        
         foreach ($tasks as $task)
         {
             if (!empty($task->status))
                 $task->status = $this->app->status($task->status);
-            $result .= $this->parser->parse('oneitem', (array) $task, true);
+            //if ($role == ROLE_OWNER)
+              //  $result .= $this->parser->parse('oneitemx', (array) $task, true);
+            //else
+              //  $result .= $this->parser->parse('oneitem', (array) $task, true);
         }
-        $this->data['display_tasks'] = $result;
-
-        // and then pass them on
-		$role = $this->session->userdata('userrole');
         
-        if ($role == ROLE_OWNER)
-            $result .= $this->parser->parse('oneitemx', (array) $task, true);
-        else
-            $result .= $this->parser->parse('oneitem', (array) $task, true);
+        $this->data['display_tasks'] = $result;
         
 		$this->data['pagetitle'] = 'TODO List Maintenance ('. $role . ')';
         $this->data['pagebody'] = 'itemlist';
