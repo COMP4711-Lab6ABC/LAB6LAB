@@ -1,3 +1,4 @@
+{pagination}
 <h3>Tasks by Status</h3>
 <table class="table">
         <tr>
